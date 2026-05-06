@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王颂佳 — 新闻学 · 数据 · 内容</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #F7F2EB;
+  --cream2:   #EDE6D8;
+  --teal:     #5BBAB5;
+  --teal-d:   #3E8E8A;
+  --teal-l:   #A8D8D5;
+  --brown:    #4A3520;
+  --brown-m:  #7A6248;
+  --brown-l:  #B09A7E;
+  --gold:     #C9A95A;
+  --white:    #FDFAF5;
+  --serif:    'Noto Serif SC', 'DM Serif Display', serif;
+  --sans:     'Noto Sans SC', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream2); }
+::-webkit-scrollbar-thumb { background: var(--teal-l); border-radius: 2px; }
+
+/* ── nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 4rem;
+  background: rgba(247,242,235,0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(90,186,181,0.15);
+  transition: all 0.3s;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.1rem; letter-spacing: 0.12em;
+  color: var(--brown); text-decoration: none; font-weight: 600;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem; letter-spacing: 0.08em; color: var(--brown-m);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+/* ── hero ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 10vw;
+  position: relative; overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute; right: -2rem; bottom: 8vh;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(8rem, 18vw, 18rem);
+  color: rgba(90,186,181,0.06);
+  line-height: 1; user-select: none;
+  white-space: nowrap;
+}
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+.hero-tag {
+  display: inline-block; margin-bottom: 1.8rem;
+  font-size: 0.78rem; letter-spacing: 0.18em; color: var(--teal);
+  border: 1px solid var(--teal-l); padding: 0.35rem 1rem;
+  border-radius: 2px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  font-weight: 600; line-height: 1.05;
+  letter-spacing: -0.01em; color: var(--brown);
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero-name em {
+  font-style: italic; color: var(--teal);
+  font-family: 'DM Serif Display', serif;
+}
+.hero-sub {
+  margin-top: 1.4rem;
+  font-size: 1rem; color: var(--brown-m); font-weight: 300;
+  line-height: 1.9; max-width: 520px;
+  animation: fadeUp 1s 0.2s ease both;
+}
+.hero-sub strong { color: var(--teal-d); font-weight: 500; }
+.hero-cta {
+  margin-top: 2.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap;
+  animation: fadeUp 1s 0.3s ease both;
+}
+.btn-primary, .btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.8rem; font-size: 0.85rem; letter-spacing: 0.06em;
+  border-radius: 2px; cursor: pointer; transition: all 0.25s;
+  text-decoration: none; font-family: var(--sans);
+}
+.btn-primary {
+  background: var(--teal); color: var(--white); border: 1px solid var(--teal);
+}
+.btn-primary:hover { background: var(--teal-d); border-color: var(--teal-d); }
+.btn-ghost {
+  background: transparent; color: var(--brown); border: 1px solid var(--brown-l);
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+.hero-meta {
+  margin-top: 4rem; padding-top: 1.8rem;
+  border-top: 1px solid var(--cream2);
+  display: flex; gap: 3rem;
+  animation: fadeUp 1s 0.4s ease both;
+}
+.hero-stat-n {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 600; color: var(--teal);
+}
+.hero-stat-l { font-size: 0.78rem; color: var(--brown-l); letter-spacing: 0.06em; margin-top: 0.1rem; }
+
+/* ── section commons ── */
+section { padding: 6rem 10vw; }
+.sec-label {
+  font-size: 0.72rem; letter-spacing: 0.22em; color: var(--teal);
+  margin-bottom: 0.6rem; text-transform: uppercase;
+}
+.sec-title {
+  font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 600; color: var(--brown); line-height: 1.25;
+  margin-bottom: 3rem;
+}
+.sec-title span { color: var(--teal); }
+.divider {
+  width: 3rem; height: 2px; background: var(--teal);
+  margin: 1.2rem 0 3rem; border-radius: 1px;
+}
+
+/* ── about ── */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+.about-avatar {
+  width: 220px; height: 280px;
+  border-radius: 4px; margin-bottom: 2rem; position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(74,53,32,0.12);
+}
+.about-avatar img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  display: block;
+}
+.about-avatar-placeholder {
+  width: 220px; height: 280px;
+  background: linear-gradient(135deg, var(--teal-l) 0%, var(--cream2) 100%);
+  border-radius: 4px; margin-bottom: 2rem; position: relative;
+  overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.avatar-initials {
+  font-family: var(--serif); font-size: 5rem; font-weight: 600;
+  color: rgba(255,255,255,0.85); padding-bottom: 1.5rem;
+  line-height: 1;
+}
+.about-contact { display: flex; flex-direction: column; gap: 0.6rem; }
+.contact-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.85rem; color: var(--brown-m);
+}
+.contact-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--cream); border: 1px solid var(--cream2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; flex-shrink: 0; color: var(--teal);
+}
+.about-text { font-size: 0.95rem; color: var(--brown-m); line-height: 2; }
+.about-text p + p { margin-top: 1.2rem; }
+.about-text strong { color: var(--brown); font-weight: 500; }
+.skills-grid {
+  margin-top: 2.5rem;
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+}
+.skill-tag {
+  font-size: 0.78rem; padding: 0.3rem 0.9rem; border-radius: 2px;
+  border: 1px solid var(--teal-l); color: var(--teal-d);
+  background: rgba(91,186,181,0.06); letter-spacing: 0.04em;
+}
+
+/* ── experience timeline ── */
+#experience { background: var(--cream); }
+.timeline { position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 10px; top: 8px; bottom: 0;
+  width: 1px; background: var(--cream2);
+}
+.timeline-item {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 2rem; margin-bottom: 3rem; position: relative;
+}
+.timeline-date {
+  font-size: 0.78rem; color: var(--brown-l); letter-spacing: 0.06em;
+  padding-top: 0.3rem; text-align: right; line-height: 1.5;
+}
+.timeline-dot {
+  position: absolute; left: 6px; top: 8px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--teal); border: 2px solid var(--white);
+  box-shadow: 0 0 0 3px rgba(91,186,181,0.2);
+}
+.timeline-body { padding-left: 1.5rem; }
+.timeline-org {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+  color: var(--brown); margin-bottom: 0.2rem;
+}
+.timeline-role {
+  font-size: 0.82rem; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 0.8rem;
+}
+.timeline-desc { font-size: 0.88rem; color: var(--brown-m); line-height: 1.85; }
+.timeline-desc li {
+  list-style: none; padding-left: 1em; position: relative; margin-bottom: 0.35rem;
+}
+.timeline-desc li::before { content: '—'; position: absolute; left: 0; color: var(--teal-l); }
+.tl-badge {
+  display: inline-block; margin-top: 0.8rem;
+  font-size: 0.72rem; padding: 0.2rem 0.7rem;
+  background: rgba(91,186,181,0.1); color: var(--teal-d);
+  border-radius: 2px; letter-spacing: 0.05em;
+}
+
+/* ── projects ── */
+#projects { background: var(--white); }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--cream); border: 1px solid var(--cream2);
+  border-radius: 4px; padding: 1.8rem;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(74,53,32,0.08);
+  border-color: var(--teal-l);
+}
+.project-card.featured {
+  grid-column: span 2;
+  background: var(--brown); color: var(--cream);
+  border-color: transparent;
+}
+.project-card.writing {
+  background: linear-gradient(135deg, rgba(201,169,90,0.06) 0%, var(--cream) 60%);
+  border-color: rgba(201,169,90,0.25);
+}
+.project-card.writing:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px rgba(201,169,90,0.12);
+}
+.project-num {
+  font-size: 0.7rem; letter-spacing: 0.15em; color: var(--teal);
+  margin-bottom: 1.2rem; font-family: 'DM Serif Display', serif;
+}
+.project-card.featured .project-num { color: var(--teal-l); }
+.project-card.writing .project-num { color: var(--gold); }
+.project-title {
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+  color: var(--brown); line-height: 1.4; margin-bottom: 0.8rem;
+}
+.project-card.featured .project-title { color: var(--cream); }
+.project-desc {
+  font-size: 0.85rem; color: var(--brown-m); line-height: 1.8;
+}
+.project-card.featured .project-desc { color: var(--brown-l); }
+.project-tags {
+  margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.project-tag {
+  font-size: 0.7rem; padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(91,186,181,0.35); color: var(--teal-d);
+  border-radius: 2px;
+}
+.project-card.featured .project-tag {
+  border-color: rgba(168,216,213,0.3); color: var(--teal-l);
+}
+.project-card.writing .project-tag {
+  border-color: rgba(201,169,90,0.35); color: #8a6f2a;
+}
+.project-open-hint {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 1.2rem; font-size: 0.8rem; color: var(--teal);
+  letter-spacing: 0.06em; transition: gap 0.2s;
+}
+.project-card.writing .project-open-hint { color: var(--gold); }
+.project-card.featured .project-open-hint { color: var(--teal-l); }
+.project-card:hover .project-open-hint { gap: 0.7rem; }
+
+/* ── Project Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(44,30,14,0.65);
+  backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.modal-overlay.open {
+  opacity: 1; pointer-events: all;
+}
+.modal-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001;
+  width: min(96vw, 1100px);
+  background: var(--white);
+  display: grid; grid-template-columns: 340px 1fr;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: -12px 0 60px rgba(44,30,14,0.18);
+}
+.modal-panel.open { transform: translateX(0); }
+
+/* Left info pane */
+.modal-info {
+  background: var(--brown); color: var(--cream);
+  padding: 3rem 2.5rem;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.modal-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  color: var(--cream-l); font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; margin-bottom: 2.5rem; align-self: flex-start;
+  flex-shrink: 0;
+}
+.modal-close:hover { background: rgba(91,186,181,0.25); border-color: var(--teal); color: var(--teal-l); }
+.modal-project-num {
+  font-size: 0.68rem; letter-spacing: 0.2em; color: var(--teal-l);
+  margin-bottom: 0.8rem;
+}
+.modal-title {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
+  color: var(--cream); line-height: 1.4; margin-bottom: 1.5rem;
+}
+.modal-desc {
+  font-size: 0.87rem; color: var(--brown-l); line-height: 1.95;
+  flex: 1;
+}
+.modal-desc p + p { margin-top: 1rem; }
+.modal-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.8rem;
+}
+.modal-tag {
+  font-size: 0.7rem; padding: 0.2rem 0.65rem;
+  border: 1px solid rgba(168,216,213,0.3); color: var(--teal-l);
+  border-radius: 2px;
+}
+.modal-writing .modal-tag {
+  border-color: rgba(201,169,90,0.35); color: #e8cc80;
+}
+
+/* Right content pane */
+.modal-content {
+  overflow-y: auto; overflow-x: hidden;
+  background: var(--cream);
+  position: relative;
+}
+/* Scrollable image panel */
+.modal-images {
+  padding: 2.5rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.modal-images img {
+  width: 100%; border-radius: 3px;
+  box-shadow: 0 4px 24px rgba(74,53,32,0.08);
+  display: block;
+}
+/* Scrollable text panel */
+.modal-article {
+  padding: 3rem 3.5rem;
+}
+.modal-article-meta {
+  font-size: 0.75rem; letter-spacing: 0.14em; color: var(--teal);
+  margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.modal-article-title {
+  font-family: var(--serif); font-size: 1.6rem; font-weight: 600;
+  color: var(--brown); line-height: 1.35; margin-bottom: 0.6rem;
+}
+.modal-article-byline {
+  font-size: 0.82rem; color: var(--brown-l); margin-bottom: 2rem;
+  padding-bottom: 1.5rem; border-bottom: 1px solid var(--cream2);
+}
+.modal-article-body {
+  font-size: 0.92rem; color: var(--brown-m); line-height: 2.1;
+  font-family: var(--sans);
+}
+.modal-article-body p { margin-bottom: 1.4rem; }
+.modal-article-body p:first-child::first-letter {
+  font-family: var(--serif); font-size: 2.6em; font-weight: 600;
+  float: left; line-height: 0.85; margin: 0.05em 0.1em 0 0;
+  color: var(--teal-d);
+}
+.modal-article-quote {
+  margin: 2rem 0; padding: 1.5rem 2rem;
+  border-left: 3px solid var(--teal);
+  background: rgba(91,186,181,0.05);
+  border-radius: 0 3px 3px 0;
+}
+.modal-article-quote p {
+  font-family: var(--serif); font-size: 1rem; color: var(--brown);
+  line-height: 1.8; font-style: italic; margin-bottom: 0 !important;
+}
+
+/* ── skills section ── */
+#skills { background: var(--cream); }
+.skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skill-group { margin-bottom: 2rem; }
+.skill-group-title {
+  font-size: 0.8rem; letter-spacing: 0.12em; color: var(--gold);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--cream2);
+}
+.skill-row { margin-bottom: 0.9rem; }
+.skill-name {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; color: var(--brown); margin-bottom: 0.4rem;
+}
+.skill-level { font-size: 0.75rem; color: var(--brown-l); }
+.skill-bar {
+  height: 3px; background: var(--cream2); border-radius: 2px; overflow: hidden;
+}
+.skill-fill {
+  height: 100%; border-radius: 2px; background: var(--teal);
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+/* Writing highlight box */
+.writing-highlight {
+  grid-column: span 2;
+  background: var(--white); border: 1px solid var(--cream2);
+  border-radius: 4px; padding: 2rem 2.5rem;
+  display: flex; align-items: flex-start; gap: 2rem;
+  margin-bottom: 2rem;
+}
+.writing-highlight-icon {
+  font-size: 2.2rem; flex-shrink: 0; line-height: 1;
+  margin-top: 0.1rem;
+}
+.writing-highlight-body {}
+.writing-highlight-title {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+  color: var(--brown); margin-bottom: 0.6rem;
+}
+.writing-highlight-desc {
+  font-size: 0.87rem; color: var(--brown-m); line-height: 1.85;
+}
+.writing-highlight-desc strong { color: var(--teal-d); font-weight: 500; }
+.writing-stats {
+  display: flex; gap: 2.5rem; margin-top: 1rem; flex-wrap: wrap;
+}
+.writing-stat { text-align: center; }
+.writing-stat-n {
+  font-family: var(--serif); font-size: 1.6rem; font-weight: 600; color: var(--teal);
+  line-height: 1;
+}
+.writing-stat-l { font-size: 0.72rem; color: var(--brown-l); margin-top: 0.2rem; }
+
+/* ── footer / contact ── */
+#contact {
+  background: var(--brown); color: var(--cream);
+  padding: 5rem 10vw;
+}
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+}
+.contact-left .sec-label { color: var(--teal-l); }
+.contact-title {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600; line-height: 1.2; color: var(--cream);
+  margin-bottom: 1.5rem;
+}
+.contact-title em { color: var(--teal); font-style: italic; font-family: 'DM Serif Display', serif; }
+.contact-sub { font-size: 0.92rem; color: var(--brown-l); line-height: 1.9; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid rgba(176,154,126,0.25); border-radius: 4px;
+  text-decoration: none; color: var(--cream);
+  font-size: 0.88rem; transition: all 0.25s;
+  background: rgba(255,255,255,0.03);
+}
+.contact-link:hover {
+  background: rgba(91,186,181,0.12); border-color: var(--teal);
+}
+.contact-link-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(91,186,181,0.15); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; color: var(--teal-l);
+}
+.contact-link-text { flex: 1; }
+.contact-link-label { font-size: 0.72rem; color: var(--brown-l); letter-spacing: 0.06em; }
+.contact-link-val { font-size: 0.88rem; color: var(--cream); }
+.footer-bottom {
+  margin-top: 4rem; padding-top: 2rem;
+  border-top: 1px solid rgba(176,154,126,0.2);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.78rem; color: var(--brown-l); letter-spacing: 0.05em;
+}
+
+/* ── decorative SVG ── */
+.deco-birds { position: absolute; opacity: 0.12; pointer-events: none; }
+
+/* ── animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ── scroll indicator on modal ── */
+.modal-scroll-hint {
+  position: sticky; bottom: 0;
+  text-align: center; padding: 0.8rem;
+  font-size: 0.72rem; color: var(--brown-l); letter-spacing: 0.1em;
+  background: linear-gradient(to bottom, transparent, var(--cream) 60%);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  section { padding: 4rem 6vw; }
+  #hero { padding: 8rem 6vw 4rem; }
+  .about-grid, .skills-layout, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .project-card.featured { grid-column: span 1; }
+  .timeline-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+  .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+  .modal-panel { grid-template-columns: 1fr; width: 100vw; }
+  .modal-info { max-height: 40vh; }
+  .writing-highlight { grid-column: span 1; flex-direction: column; gap: 1rem; }
+}
+@media (max-width: 600px) {
+  .modal-panel { grid-template-rows: auto 1fr; }
+  .modal-info { padding: 2rem 1.5rem; }
+  .modal-article { padding: 2rem 1.5rem; }
+  .modal-images { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── navigation ── -->
+<nav>
+  <a class="nav-logo" href="#hero">王颂佳</a>
+  <ul class="nav-links">
+    <li><a href="#about">关于</a></li>
+    <li><a href="#experience">经历</a></li>
+    <li><a href="#projects">作品</a></li>
+    <li><a href="#skills">能力</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+
+<!-- ── hero ── -->
+<section id="hero">
+  <div class="hero-bg-text">HUST</div>
+  <svg class="deco-birds" style="right:5%;top:15%;width:300px;" viewBox="0 0 300 200" fill="none">
+    <path d="M20 80 Q35 65 50 80 Q65 95 80 80" stroke="#5BBAB5" stroke-width="2" fill="none"/>
+    <path d="M100 50 Q115 35 130 50 Q145 65 160 50" stroke="#5BBAB5" stroke-width="1.5" fill="none"/>
+    <path d="M200 100 Q210 90 220 100 Q230 110 240 100" stroke="#5BBAB5" stroke-width="1.2" fill="none"/>
+    <path d="M60 140 Q72 128 84 140 Q96 152 108 140" stroke="#5BBAB5" stroke-width="1.5" fill="none"/>
+    <path d="M170 30 Q178 22 186 30 Q194 38 202 30" stroke="#5BBAB5" stroke-width="1" fill="none"/>
+    <path d="M240 70 Q252 58 264 70" stroke="#5BBAB5" stroke-width="1" fill="none"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-tag">新闻学 · 数据新闻 · 内容运营 · 深度报道</div>
+    <h1 class="hero-name">
+      王颂佳<br>
+      <em>Wang Songjia</em>
+    </h1>
+    <p class="hero-sub">
+      华中科技大学新闻与信息传播学院在读。<br>
+      擅长用<strong>数据讲故事</strong>，用<strong>视觉呈现洞察</strong>，用<strong>文字记录温度</strong>。<br>
+      曾在国家级科技媒体发稿，作品获澎湃新闻发布。
+    </p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#projects">查看作品集 →</a>
+      <a class="btn-ghost" href="#contact">联系我</a>
+    </div>
+    <div class="hero-meta">
+      <div>
+        <div class="hero-stat-n">80+</div>
+        <div class="hero-stat-l">各级媒体发稿数</div>
+      </div>
+      <div>
+        <div class="hero-stat-n">420+</div>
+        <div class="hero-stat-l">审核发布内容篇</div>
+      </div>
+      <div>
+        <div class="hero-stat-n">2028</div>
+        <div class="hero-stat-l">预计毕业年份</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── about ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="about-avatar">
+        <img src="photo.jpg" alt="王颂佳" onerror="this.parentElement.innerHTML='<div class=\'avatar-initials\'>佳</div>'; this.parentElement.className='about-avatar-placeholder';">
+      </div>
+      <div class="about-contact">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <span>2845575761@qq.com</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <span>13135969644</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <span>武汉 · 光谷</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🎓</div>
+          <span>华中科技大学 2024 级</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <div class="sec-label reveal">ABOUT ME</div>
+      <h2 class="sec-title reveal">
+        新闻学生，<span>数据思维</span><br>内容生产者
+      </h2>
+      <div class="divider reveal"></div>
+      <div class="about-text reveal reveal-d1">
+        <p>我是一名就读于华中科技大学新闻与信息传播学院的新闻学本科生。课程成绩上，《数据新闻报道》99分是我对数据叙事方向的坚定选择；实践中，我跑过光谷的科技新闻，爬过盲道的舆情数据，也试图用可视化让古建脊兽开口说话。</p>
+        <p>我喜欢那些需要<strong>数据 + 叙事 + 设计</strong>同时在线才能完成的项目——找到数字背后的故事，然后用最合适的视觉语言把它讲给更多人听。</p>
+        <p>目前在华中科技大学党委宣传部担任运营助理，同时参与多个数据新闻与传播研究项目。英语六级、普通话二甲，对跨文化传播也有持续的研究兴趣。</p>
+      </div>
+      <div class="skills-grid reveal reveal-d2">
+        <span class="skill-tag">数据新闻</span>
+        <span class="skill-tag">信息可视化</span>
+        <span class="skill-tag">Python 爬虫</span>
+        <span class="skill-tag">SPSS 分析</span>
+        <span class="skill-tag">新闻评论</span>
+        <span class="skill-tag">人物特稿</span>
+        <span class="skill-tag">内容运营</span>
+        <span class="skill-tag">短视频制作</span>
+        <span class="skill-tag">新闻采写</span>
+        <span class="skill-tag">用户研究</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── experience ── -->
+<section id="experience">
+  <div class="sec-label reveal">EXPERIENCE</div>
+  <h2 class="sec-title reveal">实习与<span>实践经历</span></h2>
+  <div class="divider reveal"></div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2025.06<br>—<br>至今</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-body">
+        <div class="timeline-org">华中科技大学党委宣传部</div>
+        <div class="timeline-role">运营助理</div>
+        <ul class="timeline-desc">
+          <li>协助运维官方新闻网及抖音、小红书账号，负责"媒体聚焦"板块日常内容管理，累计审核发布内容 420+ 篇</li>
+          <li>在校庆、毕业典礼等全校性重大活动中统筹对接 20+ 社会媒体记者，积累从内容生产者到传播组织者的实战经验</li>
+        </ul>
+        <span class="tl-badge">平台运营</span>
+        <span class="tl-badge">内容管理</span>
+        <span class="tl-badge">媒体协调</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-d1">
+      <div class="timeline-date">2025.06<br>—<br>2026.02</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-body">
+        <div class="timeline-org">科技日报（中国科技网）驻华科大站</div>
+        <div class="timeline-role">实习记者</div>
+        <ul class="timeline-desc">
+          <li>独立完成选题挖掘、专家采访、稿件撰写全流程，在国家级科技媒体平台高质量发稿 19 篇</li>
+          <li>深度维护 20+ 科研团队及专家学者关系网络，建立线索快速响应机制</li>
+        </ul>
+        <span class="tl-badge">国家级媒体</span>
+        <span class="tl-badge">科技报道</span>
+        <span class="tl-badge">专家访谈</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-d2">
+      <div class="timeline-date">2026.04<br>—<br>2026.07</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-body">
+        <div class="timeline-org">HANS 汉声文旅集团 × 华中科大新闻学院</div>
+        <div class="timeline-role">校企数据实践项目 核心成员</div>
+        <ul class="timeline-desc">
+          <li>从微信视频号、小红书、抖音等多平台采集数据并完成维度分析，为头部文旅品牌运营决策提供支撑</li>
+          <li>参与制定数据采集标准化流程，将整理效率提升 25%，方法被项目组沿用为常规规范</li>
+        </ul>
+        <span class="tl-badge">多平台数据</span>
+        <span class="tl-badge">流程优化</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal reveal-d3">
+      <div class="timeline-date">2023.09<br>—<br>2024.09</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-body">
+        <div class="timeline-org">华中科技大学学生记者团</div>
+        <div class="timeline-role">记者部部长</div>
+        <ul class="timeline-desc">
+          <li>全面负责 28 名成员日常运营，建立稿件分级审核机制，部门发稿量同比提升 30%</li>
+          <li>主导策划系列主题报道，校级平台发稿 27 篇，多篇被湖北日报、长江日报转载</li>
+        </ul>
+        <span class="tl-badge">团队管理</span>
+        <span class="tl-badge">内容策划</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── projects ── -->
+<section id="projects">
+  <div class="sec-label reveal">PROJECTS & WRITING</div>
+  <h2 class="sec-title reveal">项目研究与<span>作品集</span></h2>
+  <div class="divider reveal"></div>
+
+  <div class="projects-grid">
+
+    <!-- 01 数据新闻 featured -->
+    <div class="project-card featured reveal" onclick="openModal('blindpath')">
+      <div class="project-num">01 · 数据新闻</div>
+      <div class="project-title">《武汉市盲道失效调研分析》<br>数据新闻报道</div>
+      <div class="project-desc">
+        实地调研武汉 8 个行政区 120 公里盲道现状，完成 4 个平台舆情数据爬取。主导项目整体美工排版与数据可视化设计，制作信息图 8 组。<br><br>
+        作品获澎湃新闻发布与认可，将严肃社会议题转化为引人关注的视觉叙事。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Python 爬虫</span>
+        <span class="project-tag">数据可视化</span>
+        <span class="project-tag">美工排版</span>
+        <span class="project-tag">澎湃新闻发布</span>
+      </div>
+      <div class="project-open-hint">查看完整作品 →</div>
+    </div>
+
+    <!-- 02 文化可视化 -->
+    <div class="project-card reveal reveal-d1" onclick="openModal('ridgebeast')">
+      <div class="project-num">02 · 文化可视化</div>
+      <div class="project-title">《脊兽千年》<br>中国古建脊兽信息可视化</div>
+      <div class="project-desc">
+        整理 30+ 古籍文献与 120 处古建脊兽样本，构建完整的类型、等级、演变数据库。将数据图表逻辑与国风美学视觉语言融合，探索传统文化数字化活化表达。拟参加 2026 年大学生计算机设计大赛。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">数据库构建</span>
+        <span class="project-tag">国风设计</span>
+        <span class="project-tag">文化传播</span>
+      </div>
+      <div class="project-open-hint">查看完整作品 →</div>
+    </div>
+
+    <!-- 03 数据分析 -->
+    <div class="project-card reveal reveal-d1">
+      <div class="project-num">03 · 数据分析</div>
+      <div class="project-title">区域农产品品牌价值<br>评估指标体系构建</div>
+      <div class="project-desc">
+        构建"产业承载力—品牌传播力—消费者满意度"多维评估模型，覆盖全国近 2000 个地理标志农产品品牌。运用 Python 爬虫与情感分析，采集清洗数据 2 万余条。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">情感分析</span>
+        <span class="project-tag">多维建模</span>
+      </div>
+    </div>
+
+    <!-- 04 用户研究 -->
+    <div class="project-card reveal reveal-d2">
+      <div class="project-num">04 · 用户研究</div>
+      <div class="project-title">《"喻"见江城》<br>来华留学生城市形象认知研究</div>
+      <div class="project-desc">
+        独立设计中英双语问卷，结合半结构式访谈与网络爬取完成多源数据处理。通过 SPSS 聚类分析与回归建模锚定三类用户画像，基于 IPA 模型提出可落地的国际传播优化建议。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">SPSS</span>
+        <span class="project-tag">用户画像</span>
+        <span class="project-tag">IPA 模型</span>
+        <span class="project-tag">国际传播</span>
+      </div>
+    </div>
+
+    <!-- 05 内容创作 -->
+    <div class="project-card reveal reveal-d2">
+      <div class="project-num">05 · 内容创作</div>
+      <div class="project-title">暑期"三下乡"社会实践<br>宣传负责人</div>
+      <div class="project-desc">
+        全程负责短视频剧本构思、现场拍摄与后期剪辑，产出短视频 7 条、图文报道 4 篇。独立完成对非遗传承人熊年顺先生深度采访，团队获评"湖北省优秀实践团队"。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">短视频</span>
+        <span class="project-tag">深度采访</span>
+        <span class="project-tag">非遗传播</span>
+      </div>
+    </div>
+
+    <!-- 06 新闻评论 writing -->
+    <div class="project-card writing reveal reveal-d1" onclick="openModal('commentary')">
+      <div class="project-num">06 · 新闻评论</div>
+      <div class="project-title">《讨论女性权利：<br>站在现实里，站在具体里》</div>
+      <div class="project-desc">
+        一篇关于女性主义议题的时评。文章从社交媒体上碎片化的女性叙事出发，通过母亲、朋友、外婆等具体的人，追问真正的"个体觉醒"意味着什么——观点需扎根于自己的生活，而非他人替你想好的框架。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">新闻评论</span>
+        <span class="project-tag">时事评论</span>
+        <span class="project-tag">女性议题</span>
+      </div>
+      <div class="project-open-hint">阅读全文 →</div>
+    </div>
+
+    <!-- 07 人物特稿 writing -->
+    <div class="project-card writing reveal reveal-d2" onclick="openModal('profile')">
+      <div class="project-num">07 · 人物特稿</div>
+      <div class="project-title">《在跨界中生长，<br>于无声处发声》</div>
+      <div class="project-desc">
+        人物特稿，记录华科传播学生余易昕的成长故事。她在文工交叉的道路上，用技术为听障群体搭建发声的桥梁，让 343 名听障人士第一次尝试发出声音。获"校三好学生标兵"称号。
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">人物特稿</span>
+        <span class="project-tag">深度报道</span>
+        <span class="project-tag">公益传播</span>
+      </div>
+      <div class="project-open-hint">阅读全文 →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── skills deep dive ── -->
+<section id="skills">
+  <div class="sec-label reveal">SKILLS</div>
+  <h2 class="sec-title reveal">能力<span>图谱</span></h2>
+  <div class="divider reveal"></div>
+
+  <!-- Writing Highlight Box -->
+  <div class="writing-highlight reveal" style="grid-column: span 2;">
+    <div class="writing-highlight-icon">✍️</div>
+    <div class="writing-highlight-body">
+      <div class="writing-highlight-title">文字能力：从校园到国家级媒体</div>
+      <div class="writing-highlight-desc">
+        在校期间，从校级至国家级媒体累计发布约 <strong>80 篇稿件</strong>，涵盖<strong>消息稿、评论稿、深度特稿、新闻综述</strong>等多种体裁。
+        曾任学生记者团记者部部长，主导策划系列主题报道，多篇被<strong>湖北日报、长江日报</strong>等省级媒体转载；
+        在<strong>科技日报（中国科技网）</strong>国家级媒体平台独立高质量发稿 19 篇；校级平台发稿 27 篇，部门发稿量同比提升 30%。
+      </div>
+      <div class="writing-stats">
+        <div class="writing-stat">
+          <div class="writing-stat-n">80+</div>
+          <div class="writing-stat-l">各级媒体稿件</div>
+        </div>
+        <div class="writing-stat">
+          <div class="writing-stat-n">19</div>
+          <div class="writing-stat-l">国家级媒体发稿</div>
+        </div>
+        <div class="writing-stat">
+          <div class="writing-stat-n">27</div>
+          <div class="writing-stat-l">校级平台发稿</div>
+        </div>
+        <div class="writing-stat">
+          <div class="writing-stat-n">多篇</div>
+          <div class="writing-stat-l">省级媒体转载</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-layout">
+    <div class="reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">内容生产与报道</div>
+        <div class="skill-row">
+          <div class="skill-name"><span>新闻采写与选题</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>评论写作 / 深度特稿</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>短视频策划与剪辑</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>图文报道 / 美工排版</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">平台运营</div>
+        <div class="skill-row">
+          <div class="skill-name"><span>内容审核与发布</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>抖音 / 小红书运营</span><span class="skill-level">进阶</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>活动策划与媒体协调</span><span class="skill-level">进阶</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="skill-group">
+        <div class="skill-group-title">数据与研究</div>
+        <div class="skill-row">
+          <div class="skill-name"><span>Python 爬虫 / 数据清洗</span><span class="skill-level">进阶</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>SPSS 统计分析</span><span class="skill-level">进阶</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>问卷设计与用户研究</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>数据可视化设计</span><span class="skill-level">熟练</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">语言</div>
+        <div class="skill-row">
+          <div class="skill-name"><span>中文</span><span class="skill-level">母语 · 普通话二甲</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>英语</span><span class="skill-level">CET-6</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-name"><span>韩语</span><span class="skill-level">入门 · 优秀结营</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── contact ── -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="sec-label">CONTACT</div>
+      <h2 class="contact-title">
+        欢迎来聊，<br>一起做些<em>有意思</em>的事
+      </h2>
+      <p class="contact-sub">
+        目前正在寻找数据新闻、内容运营、产品方向的实习机会。<br>
+        无论是合作项目还是行业交流，都非常欢迎联系我。
+      </p>
+    </div>
+    <div class="contact-right reveal reveal-d1">
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:2845575761@qq.com">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-text">
+            <div class="contact-link-label">EMAIL</div>
+            <div class="contact-link-val">2845575761@qq.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:13135969644">
+          <div class="contact-link-icon">☎</div>
+          <div class="contact-link-text">
+            <div class="contact-link-label">PHONE</div>
+            <div class="contact-link-val">131 3596 9644</div>
+          </div>
+        </a>
+        <a class="contact-link" href="#">
+          <div class="contact-link-icon">🔗</div>
+          <div class="contact-link-text">
+            <div class="contact-link-label">作品集链接</div>
+            <div class="contact-link-val">即将上线 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 王颂佳 · 华中科技大学新闻学院</span>
+    <span>Designed with intention · Built with curiosity</span>
+  </div>
+</section>
+
+<!-- ── Modal Overlay ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+<!-- ── Modal: 盲道失灵 ── -->
+<div class="modal-panel" id="modal-blindpath">
+  <div class="modal-info">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-project-num">01 · 数据新闻</div>
+    <div class="modal-title">《武汉市盲道失效调研分析》数据新闻报道</div>
+    <div class="modal-desc">
+      <p>实地调研武汉 8 个行政区、120 公里盲道现状，完成 4 个平台（微博、知乎、澎湃、小红书）舆情数据爬取与清洗。</p>
+      <p>主导项目整体美工排版与数据可视化设计，制作信息图 8 组，将严肃的城市无障碍议题转化为兼具可读性与冲击力的视觉叙事。</p>
+      <p>作品获澎湃新闻编辑认可并正式发布，引发持续阅读与转发。</p>
+    </div>
+    <div class="modal-tags">
+      <span class="modal-tag">Python 爬虫</span>
+      <span class="modal-tag">数据可视化</span>
+      <span class="modal-tag">美工排版</span>
+      <span class="modal-tag">澎湃新闻</span>
+      <span class="modal-tag">社会议题</span>
+    </div>
+  </div>
+  <div class="modal-content" id="blindpath-content">
+    <div class="modal-images">
+      <img src="blindpath_data.jpeg" alt="盲道失灵数据新闻完整图">
+    </div>
+    <div class="modal-scroll-hint" id="scroll-hint-blindpath">向下滚动查看完整内容 ↓</div>
+  </div>
+</div>
+
+<!-- ── Modal: 脊兽千年 ── -->
+<div class="modal-panel" id="modal-ridgebeast">
+  <div class="modal-info">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-project-num">02 · 文化可视化</div>
+    <div class="modal-title">《脊兽千年》中国古建脊兽信息可视化</div>
+    <div class="modal-desc">
+      <p>整理 30+ 古籍文献与 120 处古建脊兽样本，构建完整的类型、等级、演变数据库，覆盖清代官式脊兽制造工艺全流程。</p>
+      <p>将数据图表逻辑与国风美学视觉语言深度融合——包括制作工艺流程图、琉璃釉色气泡散点图、等级制度示意图及尺寸对应规格图等多维可视化。</p>
+      <p>以"千锤百炼，始得一兽"为叙事线索，让沉睡千年的古建构件在数据可视化中重新开口说话。拟参加 2026 年大学生计算机设计大赛。</p>
+    </div>
+    <div class="modal-tags">
+      <span class="modal-tag">数据库构建</span>
+      <span class="modal-tag">国风设计</span>
+      <span class="modal-tag">信息图表</span>
+      <span class="modal-tag">文化传播</span>
+      <span class="modal-tag">古建研究</span>
+    </div>
+  </div>
+  <div class="modal-content" id="ridgebeast-content">
+    <div class="modal-images">
+      <img src="ridge_beast.jpg" alt="脊兽千年完整可视化作品">
+    </div>
+    <div class="modal-scroll-hint" id="scroll-hint-ridgebeast">向下滚动查看完整内容 ↓</div>
+  </div>
+</div>
+
+<!-- ── Modal: 新闻评论 ── -->
+<div class="modal-panel modal-writing" id="modal-commentary">
+  <div class="modal-info">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-project-num">06 · 新闻评论</div>
+    <div class="modal-title">《讨论女性权利：站在现实里，站在具体里》</div>
+    <div class="modal-desc">
+      <p>一篇关于女性主义议题的时评文章，发表于在校期间。</p>
+      <p>文章从社交媒体碎片化女性叙事的疲惫感切入，通过母亲、朋友、外婆等具体的人的真实故事，追问——那些让人热血沸腾的观点，究竟来自自己的生活，还是来自别人替你想好的框架？</p>
+      <p>在承认理论价值的同时，主张真正的觉醒需要"站在现实里，站在具体里"，既对自己诚实，也对他人宽容。</p>
+    </div>
+    <div class="modal-tags">
+      <span class="modal-tag">新闻评论</span>
+      <span class="modal-tag">女性议题</span>
+      <span class="modal-tag">时事评论</span>
+    </div>
+  </div>
+  <div class="modal-content">
+    <div class="modal-article">
+      <div class="modal-article-meta">新闻评论 · 王颂佳</div>
+      <div class="modal-article-title">讨论女性权利：站在现实里，站在具体里</div>
+      <div class="modal-article-byline">王颂佳 · 华中科技大学新闻与信息传播学院</div>
+      <div class="modal-article-body">
+        <p>前些天读到一篇评论，作者对当下某些女性主义叙事感到疲惫——那些标榜"个体觉醒"的文字年复一年地重复，却看不出有任何基于自身生活的真实思考。文章在评论区引发了激烈争论：有人说"矫枉必须过正"，个体觉醒需要反复言说，才能由点及面推动结构变革；也有人觉得，这种疲劳感恰恰说明叙事停留在原地，无法真正改变现实。</p>
+        <p>两种观点各有立场。但我更想追问的是另一件事：当我们在谈论女性主义时，我们在谈论什么？那些让我们热血沸腾的观点，究竟来自我们自己的生活，还是来自社交媒体上那些碎片化的句子？</p>
+        <div class="modal-article-quote">
+          <p>《沉思录》里有一句话："我们听到的，都是观点，不是事实；我们看到的，只是视角，不是真相。"</p>
+        </div>
+        <p>社交媒体让信息变得前所未有的易得，也让观点变得前所未有的碎片。我们刷到一段话，觉得有道理，就记下来；看到一种说法，能激起情绪，就信以为真。慢慢地，这些碎片化的句子成了我们理解世界的框架，我们用它来解释自己的生活，用它来判断身边的人和事。</p>
+        <p>这种现象在女性叙事中尤为明显，因为女性议题本身关乎每个人的切身经验。但也正因如此，它更容易被碎片化的语言所裹挟。你看到有人说"原生家庭都是创伤"，就开始审视自己的父母；你看到有人说"东亚母亲懦弱愚昧"，就开始同情或批判自己的母亲；你看到有人说"真正的觉醒是反抗规训"，就开始用这套标准衡量自己够不够"觉醒"。问题是：这些观点，真的来自你的生活吗？这些视角，真的对应你的现实吗？</p>
+        <p>我见过一些谈论女性主义的文字。作者熟练地提起上野千鹤子的名字，熟练地使用"父权""厌女""凝视"这些词汇，翻来覆去，却只是把网上看来的句子重新组合。你看不到她的生活，看不到她遇到过什么、反抗过什么、争取过什么。她的话听起来很"觉醒"，却没有一句是她在现实里长出来的。</p>
+        <p>女性主义的核心是什么？是勇于反对不公，是勇于为自己争取权利。它不是一套可以复制的口号，而是一种在具体处境中辨认不公、并敢于行动的能力。当一个人高谈阔论女性主义理论，却在面对具体的不公与歧视时沉默退缩，这样的"觉醒"是否真正触及了女性主义的内核？</p>
+        <p>更让人疲惫的是，这种碎片化的语言正在取代人们的真实思考。你不需要自己去想怎样觉醒，因为网上已经有人替你想好了"新女性"该有的样子；你不需要去看身边的人，因为网上已经有人替你定义了"父母""兄长""原生家庭"应该是什么样子。你把别人的观点当作自己的事实，把网上的视角当作自己的真相，却弄丢了自己的思考与判断。</p>
+        <p>可世界真的如此简单吗？人真的可以用几个标签概括吗？真实的人，永远比叙事更复杂。</p>
+        <p>我想起我的母亲。从某种意义上说，她既是女性主义者，又不是。</p>
+        <p>说她是，是因为她在2000年代初，就敢于为自己争取生育的权利。当我的父亲和奶奶在我出生后提出"再生一个儿子"时，她拒绝了，一是她觉得自己的孩子无论儿女都被她深爱着，二是生与不生，权利得在她自己手里。在那个远不如今天"进步"的年代，她违背丈夫和婆婆的意愿，为自己争取了剖腹产的权利。在外资企业工作，她的职位一度高于众多男性，当然也包括我的父亲，她用行动证明自己并不弱于任何人。</p>
+        <p>说她不是，是因为她从未读过上野千鹤子，不知道什么是"反规训""反父权"，也从未教导我熟读任何女性主义理论。她只是在自己的现实生活里，为自己争取那些本应属于她的权利，也潜移默化地影响着我。</p>
+        <p>高三那年，我也曾深受网络上女性主义论调的感染，有一段时间特别热衷于跟她分享。我说这个理论那个概念，她听着，不怎么接话。有一次我说得激动了，脱口而出："你被洗脑了，你根本不知道自己被压迫。"她愣了一下，然后笑了，拍拍我的头说："我看你才是在给我洗脑。"</p>
+        <p>你能说她不是一个女权主义者吗？如果女性主义的核心是勇于反对不公、勇于为自己争取权利，那我母亲是一个当之无愧的女性主义者。她没读过上野千鹤子，说不出那些词，但她做过的事——坚持自己想要的分娩方式、拒绝被安排生育、在职场上走到比大多数男性更高的位置——不正是女性主义想要的结果吗？</p>
+        <p>我想起我的朋友小一。我们认识很多年了。我生活在单亲的母系家庭，外公早逝，母亲勇敢独立，外婆刚毅慈爱。而小一来自一个三胎家庭——为了生出最小的弟弟，她和妹妹先后降生，还有一个本该出世的妹妹因为性别而被终止妊娠。她和妹妹的名字取自"平凡"，弟弟的名字却寓意"名扬天下"。</p>
+        <p>这样的成长经历，让我们的观点天然不同。我认为女权本就是人权的重要组成部分，追求男女平等，本质上是补全人权在性别维度的缺失，无需脱离人权框架单独言说；她却坚信，在性别不公仍根深蒂固的现实里，要争取平等的"上桌权"，必先以"掀桌"的姿态打破沉默，矫枉必须过正。我们曾无数次讨论这些议题，从高中宿舍聊到大学以后，很多时候，我们谁也说服不了谁。</p>
+        <p>但我并不认为我们之间具有不可调和的矛盾。我们的观点不同，是因为成长经历各异。但我们依然能成为挚友，因为我们之间不只有某种观点对立者的身份，还有不可磨灭的友情。这种情感让我们互相都明白对方的真实出发点与意图。</p>
+        <p>我想起我的外婆。我曾经觉得她重男轻女——她对舅舅总是格外偏爱，愿意为他兜底所有过错，甚至替他抚养女儿。我一度以为，她对我从来都不够亲。但在我不知道的时候，她会因为我住不惯集体宿舍，悄悄花钱给我租房子。</p>
+        <p>所以，我想说的是：真实的人，永远比我们听到的叙事更复杂。如果你把网上的观点当作标尺，去丈量你身边的每一个人，你会发现他们都不合格——因为他们都是真实的人，而真实的人，永远无法被简化成任何一套叙事。</p>
+        <p>因此，我始终认为，无论谈论什么话题，我们都应该站在现实里，站在具体里。这不是拒绝理论，不是拒绝观点。而是说，在接纳任何观点之前，先回到自己的生活中，看看那些具体的人——家人、朋友、老师、同学——他们真实的样子，而不是别人嘴里说的样子。</p>
+        <p>回到开头的那场讨论。或许原文作者反对的并不是女性主义叙事，而是那种脱离现实的、碎片化的"伪觉醒"。评论区担心的也不是结构变革不需要个体觉醒，而是担心泼冷水会浇灭刚刚燃起的火。</p>
+        <p>但我想，真正的个体觉醒，从来不是靠重复别人的句子就能实现的。真正的结构变革，也需要那些能在现实里辨认不公、敢于行动的人，而不是熟练背诵理论却脱离自身处境的人。</p>
+        <div class="modal-article-quote">
+          <p>人是具体的，而非抽象的，是一切社会关系的总和。跳出网上的叙事，关注自己的生活，然后用自己的眼睛去看，用自己的耳朵去听。对自己诚实，也对别人宽容。</p>
+        </div>
+        <p>这或许不仅是面对女性主义议题的答案，更是面对所有生活与认知的答案。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: 人物特稿 ── -->
+<div class="modal-panel modal-writing" id="modal-profile">
+  <div class="modal-info">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-project-num">07 · 人物特稿</div>
+    <div class="modal-title">《在跨界中生长，于无声处发声》</div>
+    <div class="modal-desc">
+      <p>人物特稿，记录华中科技大学传播学生余易昕的成长故事，获"校三好学生标兵"称号。</p>
+      <p>她在文工交叉的求学路上，用大语言模型研究网络回音室，用唇语识别系统为343名听障人士搭建发声的桥梁，让沉默的世界第一次听见了彼此的呼吸。</p>
+      <p>文章从云南临沧深山中的一句"梦想……这是啥？"写起，追溯她从理科竞赛生到新闻学子，从实验室到公益现场的成长轨迹。</p>
+    </div>
+    <div class="modal-tags">
+      <span class="modal-tag">人物特稿</span>
+      <span class="modal-tag">深度报道</span>
+      <span class="modal-tag">校级媒体</span>
+    </div>
+  </div>
+  <div class="modal-content">
+    <div class="modal-article">
+      <div class="modal-article-meta">人物特稿 · 王颂佳</div>
+      <div class="modal-article-title">在跨界中生长，于无声处发声</div>
+      <div class="modal-article-byline">王颂佳 · 华中科技大学新闻与信息传播学院 / 校"三好学生标兵"报道</div>
+      <div class="modal-article-body">
+        <p>"我爱，你是，美丽，小孩，好"</p>
+        <p>这行并不通顺的文字，出现在一部手机屏幕上，被一位头发花白的听障老人郑重地递到余易昕面前。那天，她刚结束在武汉洪山手语园的发声教学。于她而言，这不仅是感谢，更是一份无声的信任，让她看见了自己所学能够触及的真实温度。</p>
+        <p>作为新闻学院传播学2201班的学生、2024-2025学年度校"三好学生标兵"获得者，余易昕用三年时间，走出了一条从学术积累到公益实践的扎实之路。她将答案，不仅写在学术论文和竞赛证书上，更刻在343个第一次努力发出的、模糊却珍贵的音节中。</p>
+
+        <div class="modal-article-quote">
+          <p>与自己对话：在学习中积蓄力量</p>
+        </div>
+        <p>余易昕与新闻的结缘，始于对"真实"与"影响"的向往。高中时，她在社交媒体上关注了央视驻美记者刘骁骞——一个人、一部手机，穿行在俄亥俄州化学品泄漏现场、纽约街头抗议人群与疫情时期的美国医院。她被那种"向着危险与未知挺进的勇气"震撼，更在那些报道中，清晰看到了新闻工作对社会产生直接影响的可能。这份向往，让她来到了华中科技大学新闻与信息传播学院——那里有独特的"文工交叉"培养路径，传播学专业只招理科生，并兼修计算机双学位。</p>
+        <p>对她而言，文理并非割裂的领域，而是可以彼此呼应、相互支撑的认知框架。她既在传播学课程中理解社会、学习叙事，也在计算机课堂上掌握工具、构建逻辑。这让她逐渐意识到，表达不止一种形式——缜密的分析、严谨的推演、可视化的呈现，同样是对世界的发声。</p>
+        <p>大二时，她加入全校示范性学生创新团队"地普开物创新工场"，开始系统地将所学应用于具体课题。面对社交媒体中复杂的传播现象，她尝试用大语言模型分析网络回音室效应，探究意见群体的形成机制；她也将目光投向计算机可视化领域，结合对数据结构的理解与审美设计，为辩论赛事、招聘平台等场景开发直观易懂的可视化系统。</p>
+        <p>持续的探索带来了扎实的成长。她的研究先后被新闻传播领域国际顶会与CCF-A类期刊录用；她带领团队获得美国大学生数学建模竞赛M奖、传播数据挖掘竞赛全国一等奖等多项国内外奖项。对她来说，这些成果不只是荣誉，更是一种验证——她逐渐找到了属于自己的表达方式。</p>
+
+        <div class="modal-article-quote">
+          <p>与社会对话：于无声处捕捉回音</p>
+        </div>
+        <p>2023年初，余易昕加入新闻学院"金蝉子"公益助聋团队。这个团队关注听障群体的表达困境，尝试用技术手段帮助他们学习发声。同年暑假，她随团队前往云南临沧调研。</p>
+        <p>她真正走进另一种现实，是在临沧市临翔区的社区服务中心。在那里，她和团队对六七位听障人士展开深度访谈。其中一对中年夫妻引起了她的注意：丈夫因工伤后天失聪，买不起价格高昂的助听器；妻子是家中唯一能与外界沟通的人。每一次提问，妻子都要凑到丈夫耳边反复大声重复。丈夫努力发声回应，但音节模糊。</p>
+        <p>访谈临近结束，余易昕想用一个轻松有趣的问题结尾，于是问道："您的梦想是什么？"没曾想，男人愣住了，疑惑不解地重复道："梦想……,这是啥？"</p>
+        <p>在那个瞬间，余易昕清晰地看到了"沟通"二字背后的重量。在象牙塔的论文里，"听障"往往被描述为一个生理或医学问题。但在云南临沧的群山褶皱里，听障带来的不仅是生理意义上的"听不见"，更是教育断裂、经济压力和社会脱节叠加而成的闭塞与沉默。</p>
+        <p>回到武汉后，这个场景反复出现在余易昕脑海里。于是，她决心参与搭建一座能够真正连接无声世界的"桥梁"，参与到"唇语辅助训练系统"的设计中。系统以标准示例视频引导学习者观察唇部运动，通过识别唇形变化判断发音是否准确。</p>
+        <p>产品完成后，这套系统被带进武汉洪山手语园和湖北省聋儿康复中心进行教学实践。没有惊天动地的奇迹，只有日复一日的努力重复。截至目前，已有343名听障人士通过这套系统完成了第一次发声尝试。</p>
+        <p>那位在课后追上她的老人，正是其中之一。他没有发出很准确的声音，只是在手机上打下几行并不通顺的文字，向她表示感谢。但对余易昕而言，那一刻，两个原本平行的世界，第一次听见了彼此的呼吸。</p>
+
+        <div class="modal-article-quote">
+          <p>向世界发声：在跨界处搭建桥梁</p>
+        </div>
+        <p>故事的后来，那个曾经不敢脱稿演讲的理科女生，站在了中国青年志愿服务项目大赛的答辩台上，捧回金奖；走进了央视《新闻联播》《新闻直播间》，让无声者的处境进入公共视野。</p>
+        <p>她依然也用技术发声。在文工交叉的路上，余易昕成为首届本科生自然科学创新基金的主持人中少见的文科学院学生；获得美国大学生数学建模竞赛一等奖等多项国际、国家级奖项；在计算机领域参与的研究也被CCF-A类会议、SCI一区期刊同步接收。</p>
+        <p>今年暑假，她前往牛津大学交流，学习数据科学；未来，她也将前往清华大学和新加坡南洋理工大学，攻读"全球科技传播"双硕士学位，在国际语境中深耕"技术与传播交叉"的表达方式。</p>
+        <p>"曾经的我是一个不是很会表达的人，"她说，"但现在，我用文工交叉的方式，让我和他们的声音一起，被世界听见。"</p>
+        <p>"金蝉子"，是她所在团队的名字。蝉埋藏地下数年，只为换取一夏长鸣。这仿佛是听障者重获新声的隐喻，也像是余易昕大学三年的注脚。</p>
+        <div class="modal-article-quote">
+          <p>在这个习惯于用分贝丈量存在感的时代，余易昕的实践提醒我们：真正有力的表达，往往始于对"静默"的深刻聆听与敬畏。</p>
+        </div>
+        <p>从理科竞赛生到新闻学子，从实验室到云南深山，余易昕并不是在不同领域之间来回切换，而是一次次走向断裂之处：科学与人文之间，自我与他者之间，沉默与表达之间。在那里，她试图搭建起连接的桥梁。而当第一座桥建成，它通向的，便不再只是个人的成长路径，而是更多被寂静隔绝的世界。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Modal Logic ──
+let currentModal = null;
+
+function openModal(id) {
+  if (currentModal) closeModal(true);
+  const overlay = document.getElementById('modalOverlay');
+  const panel = document.getElementById('modal-' + id);
+  if (!panel) return;
+
+  // prevent body scroll
+  document.body.style.overflow = 'hidden';
+
+  overlay.classList.add('open');
+  panel.classList.add('open');
+  currentModal = id;
+
+  // reset content scroll
+  const content = panel.querySelector('.modal-content');
+  if (content) content.scrollTop = 0;
+
+  // keyboard close
+  document.addEventListener('keydown', handleEsc);
+}
+
+function closeModal(skipTransition) {
+  if (!currentModal) return;
+  const overlay = document.getElementById('modalOverlay');
+  const panel = document.getElementById('modal-' + currentModal);
+
+  overlay.classList.remove('open');
+  panel.classList.remove('open');
+  currentModal = null;
+
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', handleEsc);
+}
+
+function handleEsc(e) {
+  if (e.key === 'Escape') closeModal();
+}
+
+// Hide scroll hints when scrolled
+document.querySelectorAll('.modal-content').forEach(content => {
+  content.addEventListener('scroll', function() {
+    const hint = this.querySelector('.modal-scroll-hint');
+    if (hint) {
+      hint.style.opacity = this.scrollTop > 50 ? '0' : '1';
+    }
+  });
+});
+
+// ── Scroll reveal ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Skill bar animation ──
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => { bar.style.width = w; }, 100);
+      });
+      skillObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('#skills').forEach(el => skillObserver.observe(el));
+
+// ── Nav scroll effect ──
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 50
+    ? '0 4px 24px rgba(74,53,32,0.06)'
+    : 'none';
+});
+</script>
+</body>
+</html>
